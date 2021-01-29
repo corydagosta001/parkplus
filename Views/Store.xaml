@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="ParkingApp.Views.Store"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ParkingApp.Views"
+             xmlns:ViewModel="clr-namespace:ParkingApp.ViewModel"
+             xmlns:Converter="clr-namespace:ParkingApp.Event_Classes"
+             mc:Ignorable="d" Width="363.5" Height="576">
+    <UserControl.Resources>
+        <ViewModel:MainWindowViewModel x:Key="vm"/>
+        <Converter:MyConverter x:Key="cv"/>
+        <Converter:CBAssign x:Key="cba"/>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Left" Width="363">
+
+
+
+
+
+        <CheckBox Name="Off" Content="Vehicle is turned off" HorizontalAlignment="Left" Margin="33,99,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,2.933"/>
+        <CheckBox Name="Park" Content="Vehicle in park" HorizontalAlignment="Left" Margin="33,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,2.933"/>
+        <CheckBox Name="Required" Content="All people, pets and required items have been removed from the vehicle" Margin="33,160,80,0" VerticalAlignment="Top"/>
+        <CheckBox Name="Brake" Content="Parking brake is set" HorizontalAlignment="Left" Margin="33,192,0,0" VerticalAlignment="Top"/>
+        <Button Content="Confirm" Command="{Binding Path=ConfirmedStorage}" Margin="10,472,19,0" VerticalAlignment="Top" Width="334" Height="39">
+            <Button.Style>
+            <Style TargetType="{x:Type Button}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsChecked, ElementName=Off}" Value="false">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsChecked, ElementName=Park}" Value="false">
+                            <Setter  Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsChecked, ElementName=Required}" Value="false">
+                            <Setter  Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsChecked, ElementName=Brake}" Value="false">
+                            <Setter  Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                 </Style.Triggers>
+            </Style>
+            </Button.Style>
+
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard TargetName="Off" TargetProperty="IsChecked">
+                                <BooleanAnimationUsingKeyFrames Duration="0:0:0.001">
+                                    <DiscreteBooleanKeyFrame Value="False"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                        <BeginStoryboard>
+                            <Storyboard TargetName="Park" TargetProperty="IsChecked">
+                                <BooleanAnimationUsingKeyFrames Duration="0:0:0.001">
+                                    <DiscreteBooleanKeyFrame Value="False"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                        <BeginStoryboard>
+                            <Storyboard TargetName="Required" TargetProperty="IsChecked">
+                                <BooleanAnimationUsingKeyFrames Duration="0:0:0.001">
+                                    <DiscreteBooleanKeyFrame Value="False"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                        <BeginStoryboard>
+                            <Storyboard TargetName="Brake" TargetProperty="IsChecked">
+                                <BooleanAnimationUsingKeyFrames Duration="0:0:0.001">
+                                    <DiscreteBooleanKeyFrame Value="False"/>
+                                </BooleanAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Button.Triggers>
+
+
+        </Button>
+        <Button Content="Cancel" Command="{Binding GotoHomeCommand}"  HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" Width="334" Height="39" RenderTransformOrigin="-0.932,1.688"/>
+        <!--Property="IsEnabled" Value="False"-->
+
+    </Grid>
+</UserControl>
