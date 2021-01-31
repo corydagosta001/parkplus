@@ -14,20 +14,18 @@
 -->
             <Grid>
 
-        <TextBox HorizontalAlignment="Left"  Height="39" Margin="37,91,0,0" TextWrapping="Wrap" Text="{Binding Path=UserName, Mode=TwoWay}" VerticalAlignment="Top"  Width="293">
+        <TextBox Name="UserName" HorizontalAlignment="Left" GotFocus="username_focus"  Height="39" Margin="37,91,0,0" TextWrapping="Wrap" Text="{Binding Path=UserName, Mode=TwoWay}" VerticalAlignment="Top"  Width="293" Focusable="True">
             <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Text" Value="{Binding Path=UserName}" />
-
-                    <Style.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Text" Value="{x:Null}" />
-                        </Trigger>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFocused}" Value="True">
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding Blank}" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="39" Margin="37,147,0,0" TextWrapping="Wrap"  Text="{Binding Path=UserPassword, Mode=TwoWay}" VerticalAlignment="Top" Width="293"/>
+        <TextBox Name="Password" GotFocus="password_focus" HorizontalAlignment="Left" Height="39" Margin="37,147,0,0" TextWrapping="Wrap"  Text="{Binding Path=UserPassword, Mode=TwoWay}" VerticalAlignment="Top" Width="293"/>
         <Button Content="Login" Command="{Binding GotoDestinationCommand}" HorizontalAlignment="Left" Margin="37,206,0,0" VerticalAlignment="Top" Width="293" Height="39"/>
         <Button Content="Home"  Command="{Binding GotoHomeCommand}" HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" Width="334" Height="39"/>
 

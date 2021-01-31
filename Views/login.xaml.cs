@@ -25,6 +25,14 @@ namespace ParkingApp.Views
             InitializeComponent();
         }
 
+        private void username_focus(object sender, RoutedEventArgs e)
+        {
+            UserName.Text = "";
+        }
 
+        private void password_focus(object sender, RoutedEventArgs e)
+        {
+            Password.Text = "";
+        }
     }
 }
