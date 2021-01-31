@@ -9,26 +9,6 @@
         mc:Ignorable="d"
         Title="" Height="650.41" Width="422.541">
     <Window.Resources>
-        <!--
-        <DataTemplate DataType="{x:Type ViewModel:View1ViewModel}">
-            <View:View1/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:View2ViewModel}">
-            <View:View2/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:HomeVM}">
-            <View:Home/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:LoginVM}">
-            <View:View2/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:StoreVM}">
-            <View:View1/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModel:RetrieveVM}">
-            <View:View2/>
-        </DataTemplate>
-        -->
     </Window.Resources>
 
     <Window.DataContext>
