@@ -14,7 +14,7 @@
          <StackPanel HorizontalAlignment="Left" Height="337" Margin="10,91,0,0" VerticalAlignment="Top" Width="334">
             <DataGrid ItemsSource="{Binding AllVehicles}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Cars in queue: " Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Cars In Queue: " Binding="{Binding Empty}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
