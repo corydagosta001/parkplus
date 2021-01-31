@@ -10,25 +10,14 @@
         <Button Content="Retrieve" Command="{Binding GotoRetrieveCommand}" HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" Width="334" Height="39" RenderTransformOrigin="-0.932,1.688"/>
 
 
-        <StackPanel HorizontalAlignment="Left" Height="337" Margin="10,91,0,0" VerticalAlignment="Top" Width="334">
-            <StackPanel>
-                <ItemsControl ItemsSource = "{Binding Path = AllVehicles}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation = "Horizontal">
-                                <!--<CheckBox Content="{Binding Path=Make,Mode=TwoWay}" IsChecked="{Binding Path=IsChecked,Mode=TwoWay}" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>-->
-                                <TextBlock Text="{Binding Path=ID}" Margin="0,0,0,0"/>
-                                <TextBlock Text="{Binding Path=Make}" Margin="15,0,0,0"/>
-                                <TextBlock Text="{Binding Path=Model}" Margin="30,0,0,0"/>
-                                <TextBlock Text="{Binding Path=Year}" Margin="45,0,0,0"/>
-                                <TextBlock Text="{Binding Path=bay}" Margin="60,0,0,0"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+
+         <StackPanel HorizontalAlignment="Left" Height="337" Margin="10,91,0,0" VerticalAlignment="Top" Width="334">
+            <DataGrid ItemsSource="{Binding AllVehicles}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Cars in queue: " Binding="{Binding ID}"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
-                 
-                    
-    </Grid>
+
+   </Grid>
 </UserControl>
