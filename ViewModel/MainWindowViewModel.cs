@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ParkingApp.Event_Classes;
-using ParkingApp.Views;
 using System.IO;
 using System.Windows;
-using ParkingApp.Model;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading;
+using ParkingApp.Event_Classes;
+using ParkingApp.Views;
+using ParkingApp.Model;
 namespace ParkingApp.ViewModel
 {
     public class MainWindowViewModel : ViewModelBase
@@ -38,7 +38,6 @@ namespace ParkingApp.ViewModel
         private string _mode;
         private string _username = "Username";
         private string _userpassword = "Password";
-        private bool _noVal = false;
         private ObservableCollection<Vehicles> _myVehicles = new ObservableCollection<Vehicles>();
         private ObservableCollection<Vehicles> _allVehicles = new ObservableCollection<Vehicles>();
         private ObservableCollection<Vehicles> _carCollect = new ObservableCollection<Vehicles>();
@@ -172,6 +171,7 @@ namespace ParkingApp.ViewModel
         }
 
 
+
         public void gotoUserClick()
         {
             if (_username == "Username")
@@ -182,6 +182,18 @@ namespace ParkingApp.ViewModel
             {
                 UserPassword = "";
             }
+        }
+
+        private async void GotoRC()
+        {
+            CurrentView = _ConfirmedRetrieve;
+            UserInformation.RetrieveCars();
+            AllVehicles = UserInformation.GetAllVehicles();
+            await Task.Run(() =>
+            {
+                Thread.Sleep(2500);
+                CurrentView = _home;
+            });
         }
 
         private async void gotoStorage()
@@ -211,17 +223,6 @@ namespace ParkingApp.ViewModel
             CurrentView = _home;
         }
 
-        private async void GotoRC()
-        {
-            CurrentView = _ConfirmedRetrieve;
-            UserInformation.RetrieveCars();
-            AllVehicles = UserInformation.GetAllVehicles();
-            await Task.Run(() =>
-            {
-                Thread.Sleep(2500);
-                CurrentView = _home;
-            });
-        }
 
         private void GotoLoginStore()
         {
@@ -274,6 +275,11 @@ namespace ParkingApp.ViewModel
             CurrentView = _store;
         }
 
+        public string Blank
+        {
+            get { return ""; }
+        }
+
         public object CurrentView
         {
             get { return _currentView; }
@@ -321,12 +327,8 @@ namespace ParkingApp.ViewModel
                 _username = value;
                 if (value == "")
                 {
-                    _username = "Username";
-                    if (_noVal == false)
-                    {
-                        OnPropertyChanged("Username");
-                    }
-                    _noVal = false;
+                    _username = UserName;
+                    OnPropertyChanged("Username");
                 }
             }
         }
