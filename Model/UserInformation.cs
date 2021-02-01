@@ -15,6 +15,7 @@ namespace ParkingApp.Model
         static List<Vehicles> UserStoredVehicles = new List<Vehicles>();
         static List<int> removeList = new List<int>();
         static List<BayModel> bayModel = new List<BayModel>();
+        static public string userFirstName;
         static int sub = 0;
         static Nullable<int> CurrentUser = null;
         static Boolean d = true;
@@ -151,6 +152,7 @@ namespace ParkingApp.Model
                 {
                     canPass = true;
                     CurrentUser = i.ID;
+                    userFirstName = i.FirstName;
                     break;
                 }
             }
