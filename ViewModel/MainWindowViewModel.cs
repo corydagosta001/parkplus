@@ -187,6 +187,16 @@ namespace ParkingApp.ViewModel
 
         private async void GotoRC()
         {
+            foreach(var i in MyVehicles)
+            {
+                foreach(var j in UserInformation.UserStoredVehicles)
+                {
+                    if(j.Make == i.Make)
+                    {
+                        j.isChecked = i.isChecked;
+                    }
+                }
+            }
             CurrentView = _ConfirmedRetrieve;
             UserInformation.RetrieveCars();
             AllVehicles = UserInformation.GetAllVehicles();
@@ -195,6 +205,7 @@ namespace ParkingApp.ViewModel
                 Thread.Sleep(2500);
                 CurrentView = _home;
             });
+
         }
 
         private async void gotoStorage()
