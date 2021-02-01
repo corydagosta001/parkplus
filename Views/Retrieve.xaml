@@ -14,7 +14,8 @@
                 <TextBlock TextWrapping="Wrap" Text="Any City" Margin="-22,0,0,0"/>
             </StackPanel>
         </StackPanel>
-        <TextBlock HorizontalAlignment="Left" Margin="23,164,0,0" TextWrapping="Wrap" Text="Welcome sir!" FontSize="20" VerticalAlignment="Top" Height="33" Width="307"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,164,0,0" TextWrapping="Wrap" Text="Welcome, " FontSize="20" VerticalAlignment="Top" Height="33" Width="87"/>
+        <TextBlock HorizontalAlignment="Left" Margin="115,164,0,0" TextWrapping="Wrap" Text="{Binding UserFirstName}" FontSize="20" VerticalAlignment="Top" Height="33" Width="87"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,202,0,0" TextWrapping="Wrap" Text="Selecting Retrieve Vehicles selects all vehicles" FontSize="14"  VerticalAlignment="Top" Width="307" Height="20"/>
         <StackPanel HorizontalAlignment="Left" Height="233" Margin="23,238,0,0" VerticalAlignment="Top" Width="307">
             <StackPanel>
@@ -44,6 +45,7 @@
 
         <Button Content="Cancel" Command="{Binding GotoHomeCommand}"  HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" Width="334" Height="39" RenderTransformOrigin="-0.932,1.688"/>
         <Button Content="Retrieve Vehicles" Command="{Binding GotoRetrieveCars}" HorizontalAlignment="Left" Margin="10,471,0,0" VerticalAlignment="Top" Width="334" Height="39"/>
+        
 
 
 
