@@ -23,11 +23,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation = "Horizontal">
-                                <!--<Button Content="{Binding Path=Make}" Margin="5" Command="{Binding Path=GotoTest}" Width="300" Height="33"/>-->
                                 <CheckBox Content="{Binding Make}" IsChecked="{Binding isChecked,Mode=TwoWay}"/>
-                                <!--
-                                <CheckBox Content="{Binding Path=Make,Mode=TwoWay}" IsChecked="{Binding Path=IsChecked,Mode=TwoWay}" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200"/>
-                                -->
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
