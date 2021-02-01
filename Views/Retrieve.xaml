@@ -16,7 +16,7 @@
         </StackPanel>
         <TextBlock HorizontalAlignment="Left" Margin="23,164,0,0" TextWrapping="Wrap" Text="Welcome, " FontSize="20" VerticalAlignment="Top" Height="33" Width="87"/>
         <TextBlock HorizontalAlignment="Left" Margin="115,164,0,0" TextWrapping="Wrap" Text="{Binding UserFirstName}" FontSize="20" VerticalAlignment="Top" Height="33" Width="87"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,202,0,0" TextWrapping="Wrap" Text="Selecting Retrieve Vehicles selects all vehicles" FontSize="14"  VerticalAlignment="Top" Width="307" Height="20"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,202,0,0" TextWrapping="Wrap" Text="Select Vehicles to retrieve" FontSize="14"  VerticalAlignment="Top" Width="307" Height="20"/>
         <StackPanel HorizontalAlignment="Left" Height="233" Margin="23,238,0,0" VerticalAlignment="Top" Width="307">
             <StackPanel>
                 <ItemsControl ItemsSource = "{Binding Path = MyVehicles}">
