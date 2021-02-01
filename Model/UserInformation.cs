@@ -49,6 +49,7 @@ namespace ParkingApp.Model
                         if(g.available == true)
                         {
                             i.bay = g.Bay;
+                            MessageBox.Show(g.Bay);
                             g.available = false;
                             break;
                         }
@@ -76,7 +77,6 @@ namespace ParkingApp.Model
                    if(l.Bay == i)
                    {
                         l.available = true;
-                        l.Bay = "";
                    }
                 }
             }
@@ -243,6 +243,7 @@ namespace ParkingApp.Model
             v.Make = make;
             v.Model = model;
             v.Year = year;
+            v.Empty = "";
             return v;
         }
 
@@ -254,6 +255,7 @@ namespace ParkingApp.Model
             v.Model = model;
             v.Year = year;
             v.bay = bay;
+            v.Empty = "";
             return v;
         }
 
