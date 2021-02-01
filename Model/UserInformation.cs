@@ -11,8 +11,8 @@ namespace ParkingApp.Model
     static public class UserInformation
     {
         static List<People> UserInfo = new List<People>();
-        static List<Vehicles> Vehicle= new List<Vehicles>();
-        static List<Vehicles> UserStoredVehicles = new List<Vehicles>();
+        static List<Vehicles> Vehicle = new List<Vehicles>();
+        static public List<Vehicles> UserStoredVehicles = new List<Vehicles>();
         static List<int> removeList = new List<int>();
         static List<BayModel> bayModel = new List<BayModel>();
         static public string userFirstName;
@@ -45,9 +45,9 @@ namespace ParkingApp.Model
             {
                 if (i.ID == CurrentUser)
                 {
-                    foreach(var g in bayModel)
+                    foreach (var g in bayModel)
                     {
-                        if(g.available == true)
+                        if (g.available == true)
                         {
                             i.bay = g.Bay;
                             g.available = false;
@@ -60,7 +60,47 @@ namespace ParkingApp.Model
 
         }
 
+
         static public void RetrieveCars()
+        {
+            List<string> b = new List<string>();
+            sub = 0;
+            removeList.Clear();
+            foreach (var i in UserStoredVehicles)
+            {
+                if (i.isChecked == true)
+                {
+                    b.Add(i.bay);
+                }
+            }
+            foreach (string i in b)
+            {
+                foreach (var l in bayModel)
+                {
+                    if (l.Bay == i)
+                    {
+                        l.available = true;
+                    }
+                }
+            }
+            foreach (var i in UserStoredVehicles)
+            {
+                if (i.ID == CurrentUser && i.isChecked == true)
+                {
+                    removeList.Add(sub);
+                }
+                sub++;
+            }
+            sub -= 1;
+            removeList.Sort();
+            removeList.Reverse();
+            foreach (int i in removeList)
+            {
+                UserStoredVehicles.RemoveAt(i);
+            }
+        }
+
+        static public void RetrieveCars_old()
         {
 
             List<string> b = new List<string>();
@@ -70,14 +110,14 @@ namespace ParkingApp.Model
             {
                 b.Add(i.bay);
             }
-            foreach(string i in b)
+            foreach (string i in b)
             {
-                foreach(var l in bayModel)
+                foreach (var l in bayModel)
                 {
-                   if(l.Bay == i)
-                   {
+                    if (l.Bay == i)
+                    {
                         l.available = true;
-                   }
+                    }
                 }
             }
             foreach (var i in UserStoredVehicles)
@@ -101,16 +141,16 @@ namespace ParkingApp.Model
         {
             int c_amount = 0;
             int a_amount = 0;
-            foreach(var i in Vehicle)
+            foreach (var i in Vehicle)
             {
-                if(i.ID == CurrentUser)
+                if (i.ID == CurrentUser)
                 {
                     c_amount++;
                 }
             }
-            foreach(var i in bayModel)
+            foreach (var i in bayModel)
             {
-                if(i.available == true)
+                if (i.available == true)
                 {
                     a_amount++;
                 }
@@ -122,9 +162,9 @@ namespace ParkingApp.Model
         public static ObservableCollection<Vehicles> GetUserVehicles()
         {
             ObservableCollection<Vehicles> uv = new ObservableCollection<Vehicles>();
-            foreach(var i in UserStoredVehicles)
+            foreach (var i in UserStoredVehicles)
             {
-                if(i.ID == CurrentUser)
+                if (i.ID == CurrentUser)
                 {
                     uv.Add(LoadVehicle1(i.ID, i.Make, i.Model, i.Year, i.bay));
                 }
@@ -137,7 +177,7 @@ namespace ParkingApp.Model
             ObservableCollection<Vehicles> uv = new ObservableCollection<Vehicles>();
             foreach (var i in UserStoredVehicles)
             {
-                uv.Add(LoadVehicle1(i.ID, i.Make, i.Model, i.Year,i.bay));
+                uv.Add(LoadVehicle1(i.ID, i.Make, i.Model, i.Year, i.bay));
             }
             return uv;
         }
@@ -146,9 +186,9 @@ namespace ParkingApp.Model
         {
             Boolean canPass = false;
             FillList();
-            foreach(var i in UserInfo)
+            foreach (var i in UserInfo)
             {
-                if(userlogin == i.UserLogin && password == i.UserPassword)
+                if (userlogin == i.UserLogin && password == i.UserPassword)
                 {
                     canPass = true;
                     CurrentUser = i.ID;
@@ -161,9 +201,9 @@ namespace ParkingApp.Model
 
         static public void FillList()
         {
-            if(UserInfo.Count == 0)
+            if (UserInfo.Count == 0)
             {
-                for(int a =0;a<4;a++)
+                for (int a = 0; a < 4; a++)
                 {
                     addRecords(a);
                 }
@@ -222,7 +262,7 @@ namespace ParkingApp.Model
                     Vehicle.Add(LoadVehicle(c + 1, "Lexus", "RX", "2021"));
                     break;
                 case 2:
-                    Vehicle.Add(LoadVehicle(c + 1, "Chevrolet", "Chevelle","1970"));
+                    Vehicle.Add(LoadVehicle(c + 1, "Chevrolet", "Chevelle", "1970"));
                     break;
                 case 3:
                     Vehicle.Add(LoadVehicle(c + 1, "Flintstones Car", "NA", "5000bc"));
@@ -238,6 +278,7 @@ namespace ParkingApp.Model
             v.Model = model;
             v.Year = year;
             v.Empty = "";
+            v.isChecked = false;
             return v;
         }
 
