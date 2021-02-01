@@ -38,6 +38,7 @@ namespace ParkingApp.ViewModel
         private string _mode;
         private string _username = "Username";
         private string _userpassword = "Password";
+        private string _userfirstname;
         private ObservableCollection<Vehicles> _myVehicles = new ObservableCollection<Vehicles>();
         private ObservableCollection<Vehicles> _allVehicles = new ObservableCollection<Vehicles>();
         private ObservableCollection<Vehicles> _carCollect = new ObservableCollection<Vehicles>();
@@ -250,6 +251,7 @@ namespace ParkingApp.ViewModel
                         break;
                     case "retrieve":
                         MyVehicles = UserInformation.GetUserVehicles();
+                        UserFirstName = UserInformation.userFirstName;
                         CurrentView = _retrieve;
                         break;
                     default:
@@ -351,6 +353,16 @@ namespace ParkingApp.ViewModel
                     _userpassword = "Password";
                     OnPropertyChanged("UserPassword");
                 }
+            }
+        }
+
+        public string UserFirstName
+        {
+            get { return _userfirstname; }
+            set 
+            {
+                _userfirstname = value;
+                OnPropertyChanged("UserFirstName");
             }
         }
 
