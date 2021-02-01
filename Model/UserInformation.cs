@@ -49,7 +49,6 @@ namespace ParkingApp.Model
                         if(g.available == true)
                         {
                             i.bay = g.Bay;
-                            MessageBox.Show(g.Bay);
                             g.available = false;
                             break;
                         }
@@ -118,13 +117,6 @@ namespace ParkingApp.Model
             return c_amount <= a_amount ? true : false;
         }
 
-        public static void probe()
-        {
-            foreach(var i in bayModel)
-            {
-            //    MessageBox.Show(i.Bay + " ::: " + i.available);
-            }
-        }
 
         public static ObservableCollection<Vehicles> GetUserVehicles()
         {
